@@ -13,9 +13,8 @@
 #import "SofADetailViewController.h"
 
 @interface SofABookmarkViewController ()
-@property (nonatomic) long m_entCount;
-@property (nonatomic, strong) NSArray *m_bmArray;
-
+@property (nonatomic, strong) NSMutableArray *m_bmArray;
+@property (weak, nonatomic) IBOutlet UITableView *m_tableView;
 @end
 
 @implementation SofABookmarkViewController
@@ -36,7 +35,15 @@
     
     // Do any additional setup after loading the view.
     self.title = @"Bookmark";
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    
+    self.title = @"Bookmark";
+    
+    // load data here to prevent change in the middle
     [self readCoreData];
+    [self.m_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,23 +66,36 @@
     [fetchRequest setEntity:entity];
     NSError *error = nil;
     self.m_bmArray =
-        [app.managedObjectContext
-            executeFetchRequest:fetchRequest error:&error];
-    self.m_entCount = self.m_bmArray.count;
+        [(NSArray*)[app.managedObjectContext
+                        executeFetchRequest:fetchRequest error:&error] mutableCopy];
     
+    if ([self.m_bmArray count] == 0) {
+        
+        UIAlertView *pAlert =
+            [[UIAlertView alloc] initWithTitle:@"No bookmark"
+                                       message:@"Going back to the search screen"
+                                      delegate:nil
+                             cancelButtonTitle:@"OK"
+                             otherButtonTitles:nil];
+        [pAlert show];
+
+        
+        // nothing in the bookmark - switch back to search view
+        self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:0];
+    }
+    
+    // debugging
     for (Bookmark *bm in self.m_bmArray) {
-        NSLog(@"name %@", bm.m_name);
+        NSLog (@"name %@", bm.m_name);
     }
 }
 
 #pragma mark - table view functions
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.m_entCount;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.m_bmArray count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
@@ -103,6 +123,45 @@
     SofADetailViewController *pDetail = (SofADetailViewController*) detailView;
     pDetail.m_startFromMap = NO;
     [self.navigationController pushViewController:detailView animated: NO];
+}
+
+- (void)tableView: (UITableView*) tableView commitEditingStyle: (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    // local variables
+    NSError *saveError = nil;
+    NSLog (@"deleting function");
+    
+    // also delete the data in the Core Data
+    SofAAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    [context deleteObject: self.m_bmArray [indexPath.row]];
+    
+    if ([context save:&saveError] == YES) {
+        NSLog (@"Saved to SQLite successfully");
+    } else {
+        NSLog (@"Saved to SQLite FAILED");
+    }
+    
+    // Remove the row from data model
+    [self.m_bmArray removeObjectAtIndex:indexPath.row];
+    
+    if ([self.m_bmArray count] == 0) {
+        UIAlertView *pAlert =
+        [[UIAlertView alloc] initWithTitle:@"No bookmark"
+                                   message:@"Going back to the search screen"
+                                  delegate:nil
+                         cancelButtonTitle:@"OK"
+                         otherButtonTitles:nil];
+        [pAlert show];
+        
+        
+        // nothing in the bookmark - switch back to search view
+        self.tabBarController.selectedViewController = [self.tabBarController.viewControllers objectAtIndex:0];
+        return;
+    }
+    
+    // Request table view to reload
+    [tableView reloadData];
 }
 
 /*

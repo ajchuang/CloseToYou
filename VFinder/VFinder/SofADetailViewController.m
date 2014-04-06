@@ -84,9 +84,29 @@
 - (IBAction)addToBookmark:(id)sender {
     
     NSLog (@"add to bookmark");
-
+    
+    // important local var
     SofAAppDelegate *app = (SofAAppDelegate*) [[UIApplication sharedApplication] delegate];
     
+    // check if the item exists
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName: @"Bookmark"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"m_name = %@", self.m_name];
+    [fetch setPredicate:predicate];
+    
+    NSError *error = [NSError new];
+    NSArray *results = [app.managedObjectContext executeFetchRequest:fetch error:&error];
+    
+    if (results) {
+        if ([results count] > 0) {
+            NSLog (@"Already existed.");
+            return;
+        }
+    } else {
+        NSLog(@"Error: %@", error);
+        return;
+    }
+
+    // perform insertion
     Bookmark *bm =
         [NSEntityDescription
             insertNewObjectForEntityForName:@"Bookmark"
@@ -110,12 +130,13 @@
                                  cancelButtonTitle:@"OK"
                                  otherButtonTitles:nil];
             [pAlertView show];
+            self.m_addToBm.enabled = NO;
             
         } else {
             NSLog(@"save new rocord failed.");
             
             UIAlertView* pAlertView =
-                [[UIAlertView alloc] initWithTitle:@"Oooops"
+                [[UIAlertView alloc] initWithTitle:@"Oooops!"
                                            message:@"Saving bookmark failed"
                                           delegate:nil
                                  cancelButtonTitle:@"OK"

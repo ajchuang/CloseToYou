@@ -23,6 +23,7 @@
 		635838CE18D3E06300EFAE88 /* SofABookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635838CD18D3E06300EFAE88 /* SofABookmarkViewController.m */; };
 		637B2B0818F0CC1500A3150C /* new-find-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 637B2B0718F0CC1500A3150C /* new-find-icon.png */; };
 		637B2B0B18F10DAE00A3150C /* SofAMyMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 637B2B0A18F10DAE00A3150C /* SofAMyMapManager.m */; };
+		637B2B0D18F21DBA00A3150C /* Button-Favorite-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 637B2B0C18F21DBA00A3150C /* Button-Favorite-icon.png */; };
 		639C8B0A18AC3D5E007EE585 /* CloseToYou.png in Resources */ = {isa = PBXBuildFile; fileRef = 639C8B0918AC3D5E007EE585 /* CloseToYou.png */; };
 		63BC081C18AEE6B900718AF4 /* NoImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 63BC081B18AEE6B900718AF4 /* NoImage.jpeg */; };
 		63C2359018AD82DB0014D238 /* SofAAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C2358F18AD82DB0014D238 /* SofAAnnotation.m */; };
@@ -76,6 +77,7 @@
 		637B2B0718F0CC1500A3150C /* new-find-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new-find-icon.png"; sourceTree = "<group>"; };
 		637B2B0918F10DAE00A3150C /* SofAMyMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SofAMyMapManager.h; sourceTree = "<group>"; };
 		637B2B0A18F10DAE00A3150C /* SofAMyMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SofAMyMapManager.m; sourceTree = "<group>"; };
+		637B2B0C18F21DBA00A3150C /* Button-Favorite-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Button-Favorite-icon.png"; sourceTree = "<group>"; };
 		639C8B0918AC3D5E007EE585 /* CloseToYou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseToYou.png; sourceTree = "<group>"; };
 		63BC081B18AEE6B900718AF4 /* NoImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NoImage.jpeg; sourceTree = "<group>"; };
 		63C2358E18AD82DB0014D238 /* SofAAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SofAAnnotation.h; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				637B2B0718F0CC1500A3150C /* new-find-icon.png */,
 				6358387018D2B15400EFAE88 /* find_s2.png */,
+				637B2B0C18F21DBA00A3150C /* Button-Favorite-icon.png */,
 				63BC081B18AEE6B900718AF4 /* NoImage.jpeg */,
 				63C2359618ADB2E60014D238 /* ColumbiaPix.jpg */,
 				6358387218D33FF900EFAE88 /* pin.png */,
@@ -363,6 +366,7 @@
 				639C8B0A18AC3D5E007EE585 /* CloseToYou.png in Resources */,
 				6358387418D33FF900EFAE88 /* pin.png in Resources */,
 				63BC081C18AEE6B900718AF4 /* NoImage.jpeg in Resources */,
+				637B2B0D18F21DBA00A3150C /* Button-Favorite-icon.png in Resources */,
 				63C2359718ADB2E60014D238 /* ColumbiaPix.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

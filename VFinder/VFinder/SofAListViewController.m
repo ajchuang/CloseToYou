@@ -79,7 +79,28 @@
     
     SofAMainModel *pModel = [SofAMainModel getMainModel];
     NSMutableArray *pRes = [pModel getCurrentResults];
-    SofAAnnotation *pAnn = [pRes objectAtIndex: indexPath.item];
+    NSDictionary *pDict = [pRes objectAtIndex: indexPath.item];
+    SofAAnnotation *pAnn = [SofAAnnotation new];
+    
+    NSDictionary *photoDict = [[pDict objectForKey:@"photos"] objectAtIndex:0];
+    
+    __strong NSString* pRef;
+    
+    if ([photoDict objectForKey:@"photo_reference"] != nil) {
+        pRef = [NSString stringWithString:[photoDict objectForKey:@"photo_reference"]];
+    } else
+        pRef = nil;
+    
+    if (pRef != nil)
+        [pAnn setPhotoRef: pRef];
+    
+    [pAnn setId: pDict[@"id"]];
+    [pAnn setName: pDict[@"name"]];
+    [pAnn setVicinity: pDict[@"vicinity"]];
+    [pAnn setReference: pDict[@"reference"]];
+    [pAnn setIcon: pDict[@"icon"]];
+    [pAnn setTitle: pDict[@"name"]];
+    [pAnn setSubtitle: pDict[@"vicinity"]];
     
     // @lfred: setup the selected item.
     [pModel setDetailItem: pAnn];

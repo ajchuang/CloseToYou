@@ -16,6 +16,7 @@
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define M_MY_QUERY @"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&types=%@&sensor=true&key=%@"
 
+//#define M_MY_QUERY @"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&types=%@&sensor=true&key=%@&rankby=distance"
 @interface SofAMyMapManager ()
 + (void)dataFetchComplete:(NSData *)responseData;
 @end
@@ -39,17 +40,18 @@ void (^sm_comp) (NSMutableArray*);
     // Retrieve the results of the URL.
     dispatch_async (kBgQueue, ^{
         // sleep 3 seconds to test cancenl function
-        [NSThread sleepForTimeInterval: 3.0];
+        //[NSThread sleepForTimeInterval: 3.0];
         NSData* data = [NSData dataWithContentsOfURL: [NSURL URLWithString:url]];
         [self performSelectorOnMainThread:@selector(dataFetchComplete:) withObject:data waitUntilDone:NO];
     });
 }
 
-+ (void)dataFetchComplete: (NSData *)responseData {
++ (void) dataFetchComplete: (NSData *)responseData {
     
-    NSLog (@"dataFetchComplete");
-    //parse out the json data
     NSError* error;
+    NSLog (@"dataFetchComplete");
+    
+    //parse out the json data
     NSDictionary* json =
         [NSJSONSerialization
           JSONObjectWithData:responseData
@@ -58,11 +60,9 @@ void (^sm_comp) (NSMutableArray*);
     
     // pick up the "results" as a key
     sm_places = [json objectForKey: @"results"];
-    
-    //Write out the data to the console.
-    //NSLog (@"Google Data: %@", sm_places);
-    
     sm_comp (sm_places);
+    
+    //NSLog (@"Google Data: %@", sm_places);
 }
 
 

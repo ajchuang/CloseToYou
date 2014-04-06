@@ -92,7 +92,6 @@
             insertNewObjectForEntityForName:@"Bookmark"
             inManagedObjectContext:app.managedObjectContext];
 
-    
     if (bm != nil) {
         bm.m_name = self.m_name;
         bm.m_vicinity = self.m_vicinity;
@@ -103,8 +102,25 @@
         
         if ([app.managedObjectContext save:&saveError] == YES) {
             NSLog(@"save new rocord successfully");
+            
+            UIAlertView* pAlertView =
+                [[UIAlertView alloc] initWithTitle:@"Hooray!"
+                                           message:@"Saving bookmark successfully"
+                                          delegate:nil
+                                 cancelButtonTitle:@"OK"
+                                 otherButtonTitles:nil];
+            [pAlertView show];
+            
         } else {
             NSLog(@"save new rocord failed.");
+            
+            UIAlertView* pAlertView =
+                [[UIAlertView alloc] initWithTitle:@"Oooops"
+                                           message:@"Saving bookmark failed"
+                                          delegate:nil
+                                 cancelButtonTitle:@"OK"
+                                 otherButtonTitles:nil];
+            [pAlertView show];
         }
     } else {
         NSLog(@"create object failed.");
@@ -119,6 +135,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - alertview delegate implementation
+- (void) alertView: (UIAlertView *)alertView clickedButtonAtIndex: (NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        NSLog (@"Cancel Key is pressed");
+    }
 }
 
 @end

@@ -258,6 +258,23 @@ static BOOL m_isCanceled = FALSE;
                                          return;
                                      }
                                      
+                                     // no data returned.
+                                     if ([results count] == 0) {
+                                         
+                                         [self.m_abortingInProgress dismissWithClickedButtonIndex:0 animated:NO];
+                                         [self.m_workingInProgress dismissWithClickedButtonIndex:0 animated:NO];
+                                         
+                                         // Open another Alert to tell user that I am going back
+                                         UIAlertView *pNoResult =
+                                            [[UIAlertView alloc] initWithTitle:@"No results found"
+                                                                       message:@"Going back to the search page"
+                                                                      delegate:self
+                                                             cancelButtonTitle:@"OK"
+                                                             otherButtonTitles:nil];
+                                         [pNoResult show];
+                                         return;
+                                     }
+                                     
                                      // process data
                                      //NSLog (@"Total: %lu", [results count]);
                                      
@@ -301,8 +318,6 @@ static BOOL m_isCanceled = FALSE;
                                              [self.m_mapViewer addAnnotation:ann];
                                              
                                          });
-                                         
-                                         //[self.m_mapViewer didChangeValueForKey: @"coordinate"];
                                      }
                                      
                                      [self loadMyStuffWithCompletion: ^(BOOL completed) {
@@ -320,18 +335,24 @@ static BOOL m_isCanceled = FALSE;
     
     if (buttonIndex == 0) {
         NSLog (@"Cancel Key is pressed");
+    
+        if (alertView == self.m_workingInProgress) {
         
-        m_isCanceled = TRUE;
+            m_isCanceled = TRUE;
         
-        self.m_abortingInProgress =
-        [[UIAlertView alloc] initWithTitle:@"Aborting In Process"
-                                   message:@"Please wait while cleaning..."
-                                  delegate:nil
-                         cancelButtonTitle:nil
-                         otherButtonTitles:nil];
-        [self.m_abortingInProgress show];
-
-
+            self.m_abortingInProgress =
+            [[UIAlertView alloc] initWithTitle:@"Aborting In Process"
+                                       message:@"Please wait while cleaning..."
+                                      delegate:nil
+                             cancelButtonTitle:nil
+                             otherButtonTitles:nil];
+            [self.m_abortingInProgress show];
+            
+        } else {
+            // Used at NO result case
+            // close the workingInProgress
+            [self.navigationController popViewControllerAnimated:NO];
+        }
     }
 }
 

@@ -7,6 +7,6 @@
         <attribute name="m_vicinity" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Bookmark" positionX="-63" positionY="-18" width="128" height="30"/>
+        <element name="Bookmark" positionX="-63" positionY="-18" width="128" height="105"/>
     </elements>
 </model>

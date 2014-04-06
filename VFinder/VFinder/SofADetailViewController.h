@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SofADetailViewController : UIViewController
+@interface SofADetailViewController : UIViewController <UIAlertViewDelegate>
 @property (nonatomic) BOOL m_startFromMap;
 @end

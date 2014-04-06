@@ -8,12 +8,12 @@
 
 #import "SofAMapViewController.h"
 #import "CoreLocation/CoreLocation.h"
-#import <COMSMapManager/COMSMapManager.h>
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import "SofAMainModel.h"
 #import "SofAAnnotation.h"
 #import "SofADetailViewController.h"
+#import "SofAMyMapManager.h"
 
 
 @interface SofAMapViewController ()
@@ -31,8 +31,12 @@
 
 // @lfred: UI properties
 @property (weak, nonatomic) IBOutlet MKMapView *m_mapViewer;
+@property (strong, nonatomic) UIAlertView* m_workingInProgress;
+@property (strong, nonatomic) UIAlertView* m_abortingInProgress;
 
 @end
+
+static BOOL m_isCanceled = FALSE;
 
 @implementation SofAMapViewController
 
@@ -54,12 +58,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     
     // @lfred: setup the location manager
     NSLog (@"viewDidLoad");
     
+    m_isCanceled = FALSE;
     self.m_isMapViewInit = NO;
+    self.m_workingInProgress = nil;
     
     self.m_locationMgr = [CLLocationManager new];
     self.m_locationMgr.delegate = self;
@@ -134,17 +139,15 @@
 }
 
 - (void)clickCallout: (id)sender{
-    //UIButton *button = sender;
+
     NSLog (@"clickCallout");
     
-    // add the data to the bookmark
-    
+    // TODO: add the data to the bookmark
 }
-
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
     
-    NSLog (@"mapView is called");
+    //NSLog (@"mapView is called");
     
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
@@ -229,13 +232,32 @@
         [self.m_mapViewer regionThatFits:theRegion];
         self.m_isMapViewInit = YES;
         
+        // show something
+        m_isCanceled = FALSE;
+        self.m_workingInProgress =
+            [[UIAlertView alloc] initWithTitle:@"Searching In Process"
+                                       message:@"Press Cancel to go back."
+                                      delegate:self
+                             cancelButtonTitle:@"Cancel"
+                             otherButtonTitles:nil];
+        [self.m_workingInProgress show];
+        
         // Setting up the google map manager
-        [GoogleMapManager nearestVenuesForLatLong:loc
+        [SofAMyMapManager nearestVenuesForLatLong:loc
                                      withinRadius:self.m_radius
                                          forQuery:self.m_searchStr
                                         queryType:self.m_searchType
-                                 googleMapsAPIKey:@"AIzaSyANQ8spsA0-kt6Nj3LSNDQhaQi9rhXKwFk"
+                                 googleMapsAPIKey:[SofAMainModel getMyApiKey]
                                  searchCompletion:^(NSMutableArray *results) {
+                                     
+                                     if (m_isCanceled == TRUE) {
+                                         
+                                         m_isCanceled = FALSE;
+                                         [self.m_abortingInProgress dismissWithClickedButtonIndex:0 animated:NO];
+                                         [self.navigationController popViewControllerAnimated:NO];
+                                         return;
+                                     }
+                                     
                                      // process data
                                      //NSLog (@"Total: %lu", [results count]);
                                      
@@ -283,8 +305,33 @@
                                          //[self.m_mapViewer didChangeValueForKey: @"coordinate"];
                                      }
                                      
-                                     [self loadMyStuffWithCompletion: ^(BOOL completed) { NSLog (@"%d", completed); }];
+                                     [self loadMyStuffWithCompletion: ^(BOOL completed) {
+                                         
+                                         NSLog (@"%d", completed);
+                                         [self.m_workingInProgress dismissWithClickedButtonIndex:0 animated:true];
+                                         
+                                     }];
                                  }];
+    }
+}
+
+#pragma mark - alertview delegate implementation
+- (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        NSLog (@"Cancel Key is pressed");
+        
+        m_isCanceled = TRUE;
+        
+        self.m_abortingInProgress =
+        [[UIAlertView alloc] initWithTitle:@"Aborting In Process"
+                                   message:@"Please wait while cleaning..."
+                                  delegate:nil
+                         cancelButtonTitle:nil
+                         otherButtonTitles:nil];
+        [self.m_abortingInProgress show];
+
+
     }
 }
 

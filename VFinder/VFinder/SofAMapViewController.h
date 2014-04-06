@@ -10,5 +10,5 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface SofAMapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate>
+@interface SofAMapViewController : UIViewController <CLLocationManagerDelegate, MKMapViewDelegate, UIAlertViewDelegate>
 @end

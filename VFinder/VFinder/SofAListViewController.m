@@ -37,6 +37,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    [tableView setEditing:editing animated:YES];
+    if (editing) {
+        addButton.enabled = NO;
+    } else {
+        addButton.enabled = YES;
+    }
+
+}
+*/
+
 #pragma mark - table view functions
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -77,17 +90,5 @@
     pDetail.m_startFromMap = YES;
     [self.navigationController pushViewController:detailView animated: NO];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

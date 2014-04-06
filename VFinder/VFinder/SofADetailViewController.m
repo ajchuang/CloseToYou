@@ -87,7 +87,6 @@
 
     SofAAppDelegate *app = (SofAAppDelegate*) [[UIApplication sharedApplication] delegate];
     
-
     Bookmark *bm =
         [NSEntityDescription
             insertNewObjectForEntityForName:@"Bookmark"

@@ -21,6 +21,8 @@
 		635838C818D3BF0300EFAE88 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 635838C718D3BF0300EFAE88 /* Bookmark.m */; };
 		635838CB18D3D28400EFAE88 /* SofAListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635838CA18D3D28400EFAE88 /* SofAListViewController.m */; };
 		635838CE18D3E06300EFAE88 /* SofABookmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635838CD18D3E06300EFAE88 /* SofABookmarkViewController.m */; };
+		637B2B0818F0CC1500A3150C /* new-find-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 637B2B0718F0CC1500A3150C /* new-find-icon.png */; };
+		637B2B0B18F10DAE00A3150C /* SofAMyMapManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 637B2B0A18F10DAE00A3150C /* SofAMyMapManager.m */; };
 		639C8B0A18AC3D5E007EE585 /* CloseToYou.png in Resources */ = {isa = PBXBuildFile; fileRef = 639C8B0918AC3D5E007EE585 /* CloseToYou.png */; };
 		63BC081C18AEE6B900718AF4 /* NoImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 63BC081B18AEE6B900718AF4 /* NoImage.jpeg */; };
 		63C2359018AD82DB0014D238 /* SofAAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 63C2358F18AD82DB0014D238 /* SofAAnnotation.m */; };
@@ -71,6 +73,9 @@
 		635838CA18D3D28400EFAE88 /* SofAListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SofAListViewController.m; sourceTree = "<group>"; };
 		635838CC18D3E06300EFAE88 /* SofABookmarkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SofABookmarkViewController.h; sourceTree = "<group>"; };
 		635838CD18D3E06300EFAE88 /* SofABookmarkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SofABookmarkViewController.m; sourceTree = "<group>"; };
+		637B2B0718F0CC1500A3150C /* new-find-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "new-find-icon.png"; sourceTree = "<group>"; };
+		637B2B0918F10DAE00A3150C /* SofAMyMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SofAMyMapManager.h; sourceTree = "<group>"; };
+		637B2B0A18F10DAE00A3150C /* SofAMyMapManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SofAMyMapManager.m; sourceTree = "<group>"; };
 		639C8B0918AC3D5E007EE585 /* CloseToYou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseToYou.png; sourceTree = "<group>"; };
 		63BC081B18AEE6B900718AF4 /* NoImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NoImage.jpeg; sourceTree = "<group>"; };
 		63C2358E18AD82DB0014D238 /* SofAAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SofAAnnotation.h; sourceTree = "<group>"; };
@@ -166,6 +171,7 @@
 		639C8B0818AC3D49007EE585 /* Reourses */ = {
 			isa = PBXGroup;
 			children = (
+				637B2B0718F0CC1500A3150C /* new-find-icon.png */,
 				6358387018D2B15400EFAE88 /* find_s2.png */,
 				63BC081B18AEE6B900718AF4 /* NoImage.jpeg */,
 				63C2359618ADB2E60014D238 /* ColumbiaPix.jpg */,
@@ -182,6 +188,8 @@
 			children = (
 				63C2358E18AD82DB0014D238 /* SofAAnnotation.h */,
 				63C2358F18AD82DB0014D238 /* SofAAnnotation.m */,
+				637B2B0918F10DAE00A3150C /* SofAMyMapManager.h */,
+				637B2B0A18F10DAE00A3150C /* SofAMyMapManager.m */,
 			);
 			name = SupportingDataStructure;
 			sourceTree = "<group>";
@@ -350,6 +358,7 @@
 				63C2359518ADAE770014D238 /* columbia.png in Resources */,
 				6358387118D2B15400EFAE88 /* find_s2.png in Resources */,
 				63DB67B618A298F60061E20D /* InfoPlist.strings in Resources */,
+				637B2B0818F0CC1500A3150C /* new-find-icon.png in Resources */,
 				63DB67BF18A298F70061E20D /* Main.storyboard in Resources */,
 				639C8B0A18AC3D5E007EE585 /* CloseToYou.png in Resources */,
 				6358387418D33FF900EFAE88 /* pin.png in Resources */,
@@ -378,6 +387,7 @@
 				635489E118A43D7E005368DF /* SofAMainModel.m in Sources */,
 				6358387A18D3BCFE00EFAE88 /* VFinder.xcdatamodeld in Sources */,
 				635838CB18D3D28400EFAE88 /* SofAListViewController.m in Sources */,
+				637B2B0B18F10DAE00A3150C /* SofAMyMapManager.m in Sources */,
 				635838C818D3BF0300EFAE88 /* Bookmark.m in Sources */,
 				63C2359018AD82DB0014D238 /* SofAAnnotation.m in Sources */,
 				63DB67C218A298F70061E20D /* SofAViewController.m in Sources */,

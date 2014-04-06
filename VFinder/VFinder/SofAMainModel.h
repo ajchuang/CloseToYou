@@ -12,6 +12,7 @@
 
 @interface SofAMainModel : NSObject
 + (SofAMainModel*) getMainModel;
++ (NSString*) getMyApiKey;
 
 - (void) setKeyword: (NSString*) kwd;
 - (NSString*) getKeyword;

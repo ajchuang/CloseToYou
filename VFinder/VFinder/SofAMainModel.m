@@ -10,6 +10,7 @@
 #import "SofAAnnotation.h"
 
 @interface SofAMainModel ()
+
 // user-input data
 @property (nonatomic, strong) NSMutableString* m_userKeywords;
 @property (nonatomic, strong) NSMutableString* m_userSearchType;
@@ -40,6 +41,10 @@
     }
     
     return model;
+}
+
++ (NSString*) getMyApiKey {
+    return @"AIzaSyANQ8spsA0-kt6Nj3LSNDQhaQi9rhXKwFk";
 }
 
 - (SofAMainModel*) init {

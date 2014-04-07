@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6344023118A5DE6600E53A80 /* COMSMapManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6344023018A5DE6600E53A80 /* COMSMapManager.framework */; };
 		635489D618A2EFCB005368DF /* SofAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635489D518A2EFCB005368DF /* SofAMapViewController.m */; };
 		635489D718A2EFCB005368DF /* SofAMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 635489D518A2EFCB005368DF /* SofAMapViewController.m */; };
 		635489DD18A42768005368DF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635489DC18A42768005368DF /* MapKit.framework */; };
@@ -57,7 +56,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6344023018A5DE6600E53A80 /* COMSMapManager.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = COMSMapManager.framework; sourceTree = "<group>"; };
 		635489D418A2EFCB005368DF /* SofAMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SofAMapViewController.h; sourceTree = "<group>"; };
 		635489D518A2EFCB005368DF /* SofAMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SofAMapViewController.m; sourceTree = "<group>"; };
 		635489DC18A42768005368DF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -113,7 +111,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6358387718D3BC9300EFAE88 /* CoreData.framework in Frameworks */,
-				6344023118A5DE6600E53A80 /* COMSMapManager.framework in Frameworks */,
 				635489DD18A42768005368DF /* MapKit.framework in Frameworks */,
 				63DB67AE18A298F60061E20D /* CoreGraphics.framework in Frameworks */,
 				63DB67B018A298F60061E20D /* UIKit.framework in Frameworks */,
@@ -220,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				6358387618D3BC9300EFAE88 /* CoreData.framework */,
-				6344023018A5DE6600E53A80 /* COMSMapManager.framework */,
 				635489DC18A42768005368DF /* MapKit.framework */,
 				63DB67AB18A298F60061E20D /* Foundation.framework */,
 				63DB67AD18A298F60061E20D /* CoreGraphics.framework */,

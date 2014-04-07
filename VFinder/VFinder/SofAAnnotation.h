@@ -28,4 +28,7 @@
 - (void) setIcon: (NSString*) icon;
 - (NSString*) getIcon;
 
+- (void) setDist: (CLLocationCoordinate2D) org my:(CLLocationCoordinate2D) pos;
+- (double) getDist;
+- (NSComparisonResult) compare: (SofAAnnotation*) otherObject;
 @end

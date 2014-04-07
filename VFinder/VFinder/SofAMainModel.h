@@ -26,6 +26,9 @@
 - (void) updateResults: (NSMutableArray*) results;
 - (NSMutableArray*) getCurrentResults;
 
+- (void) setCurrentPos: (CLLocationCoordinate2D) pos;
+- (CLLocationCoordinate2D) getCurrentPos;
+
 // @selected Venue info
 - (BOOL) setDetailItem: (SofAAnnotation*) annotation;
 - (BOOL) setDetailItemByBM: (Bookmark*) bm;

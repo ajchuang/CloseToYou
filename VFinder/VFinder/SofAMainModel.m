@@ -12,6 +12,7 @@
 @interface SofAMainModel ()
 
 // user-input data
+@property (nonatomic) CLLocationCoordinate2D m_currentPos;
 @property (nonatomic, strong) NSMutableString* m_userKeywords;
 @property (nonatomic, strong) NSMutableString* m_userSearchType;
 @property (nonatomic) double m_searchRadius;
@@ -164,6 +165,14 @@
     self.m_reference = nil;
     self.m_fotoRef = nil;
     self.m_icon = nil;
+}
+
+- (void) setCurrentPos: (CLLocationCoordinate2D) pos {
+    self.m_currentPos = pos;
+}
+
+- (CLLocationCoordinate2D) getCurrentPos {
+    return self.m_currentPos;
 }
 
 @end

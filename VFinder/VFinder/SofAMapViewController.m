@@ -62,6 +62,8 @@ static BOOL m_isCanceled = FALSE;
     // @lfred: setup the location manager
     NSLog (@"viewDidLoad");
     
+    self.tabBarController.title =@"Map";
+    
     m_isCanceled = FALSE;
     self.m_isMapViewInit = NO;
     self.m_workingInProgress = nil;
@@ -81,6 +83,10 @@ static BOOL m_isCanceled = FALSE;
     NSLog (@"!!! viewDidLoad:Keyword: %@ !!!", self.m_searchStr);
     NSLog (@"!!! viewDidLoad:searchWord: %@ !!!", self.m_searchType);
     NSLog (@"!!! viewDidLoad:radius: %1.2f !!!", self.m_radius);
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    self.tabBarController.title = @"Search Result";
 }
 
 // @lfred: stop updating locations after disappear.
@@ -279,6 +285,7 @@ static BOOL m_isCanceled = FALSE;
                                      //NSLog (@"Total: %lu", [results count]);
                                      
                                      SofAMainModel *pModel = [SofAMainModel getMainModel];
+                                     [pModel setCurrentPos: loc];
                                      [pModel updateResults: results];
                                      
                                      for (int i=0; i<[results count]; ++i) {

@@ -32,14 +32,11 @@
 {
     NSLog (@"viewDidLoad");
     [super viewDidLoad];
-    
-    // Do any additional setup after loading the view.
-    self.title = @"Bookmark";
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     
-    self.title = @"Bookmark";
+    self.tabBarController.title = @"CloseToYou";
     
     // load data here to prevent change in the middle
     [self readCoreData];

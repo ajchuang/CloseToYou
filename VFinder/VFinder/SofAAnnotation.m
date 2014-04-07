@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSString *m_vicinity;
 @property (strong, nonatomic) NSString *m_reference;
 @property (strong, nonatomic) NSString *m_icon;
+@property (nonatomic) double m_dist;
 @end
 
 @implementation SofAAnnotation
@@ -74,5 +75,28 @@
 - (NSString*) getIcon {
     return self.m_icon;
 }
+
+- (void) setDist: (CLLocationCoordinate2D) org my:(CLLocationCoordinate2D) pos {
+    
+    self.m_dist =
+        (org.latitude  - pos.latitude)  * (org.latitude  - pos.latitude) +
+        (org.longitude - org.longitude) * (org.longitude - org.longitude);
+}
+
+- (double) getDist {
+    return self.m_dist;
+}
+
+- (NSComparisonResult) compare: (SofAAnnotation*) otherObject {
+    
+    if (self.m_dist > otherObject.m_dist)
+        return NSOrderedDescending;
+    else if (self.m_dist < otherObject.m_dist)
+        return NSOrderedAscending;
+    else
+        return NSOrderedSame;
+}
+
+
 
 @end

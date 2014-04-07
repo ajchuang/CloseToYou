@@ -35,6 +35,10 @@
 
     self.m_typeInput.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.m_typeInput.delegate = self;
+    
+    // setup UI
+//    self.title = @"CloseToYou";
+    self.tabBarController.title = @"CloseToYou";
 }
 
 - (void) trackLaunchInfo {
